@@ -1,4 +1,4 @@
-package com.rpg.berserk_table_top.bestiario.model;
+package com.rpg.berserk_table_top.model.playerdiary;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,14 +12,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ActionModel {
-
+public class Notes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String damage;
-    private String type;
-    private String description;
+    private String notes;
 }
