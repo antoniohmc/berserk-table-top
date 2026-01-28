@@ -1,25 +1,21 @@
-package com.rpg.berserk_table_top.model.creature;
+package com.rpg.berserk_table_top.controller.creature;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.rpg.berserk_table_top.model.creature.CreatureLanguage;
+import com.rpg.berserk_table_top.model.creature.CreatureRarity;
+import com.rpg.berserk_table_top.model.creature.CreatureRisk;
+import com.rpg.berserk_table_top.model.creature.CreatureType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.List;
 
-@Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class CreatureNote {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CreatureNoteRequest {
 
     private String name;
     private String senses;
@@ -30,7 +26,4 @@ public class CreatureNote {
     private CreatureLanguage language;
     private CreatureRarity rarity;
     private CreatureRisk risk;
-
-
-
 }
