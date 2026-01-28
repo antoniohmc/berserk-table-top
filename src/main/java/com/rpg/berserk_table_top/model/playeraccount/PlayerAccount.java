@@ -18,7 +18,7 @@ public class PlayerAccount {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nickName;
+    private String nickname;
     private String email;
     private Integer password;
 
