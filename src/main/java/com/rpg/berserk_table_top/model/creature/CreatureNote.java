@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreatureNoteModel {
+public class CreatureNote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
