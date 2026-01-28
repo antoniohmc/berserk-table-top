@@ -1,5 +1,7 @@
 package com.rpg.berserk_table_top.model.playerdiary;
 
+import com.rpg.berserk_table_top.model.Note.Note;
+import com.rpg.berserk_table_top.model.creature.CreatureNote;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,14 +10,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notes {
+public class Diary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String notes;
+    private String name;
+    private List<Note> note;
+    private List<CreatureNote> creatureNotes;
 }
