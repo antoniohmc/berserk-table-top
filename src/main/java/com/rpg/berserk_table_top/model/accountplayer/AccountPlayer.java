@@ -1,4 +1,4 @@
-package com.rpg.berserk_table_top.model.Note;
+package com.rpg.berserk_table_top.model.accountplayer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,15 +7,18 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "account")
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Note {
+@AllArgsConstructor
+public class AccountPlayer {
 
     @Id
-    private Long id;
+    private String id;
+    private String diaryId;
 
-    private String text;
+    private String nickname;
+    private String password;
+
 }

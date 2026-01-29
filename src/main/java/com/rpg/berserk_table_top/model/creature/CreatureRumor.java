@@ -1,29 +1,27 @@
 package com.rpg.berserk_table_top.model.creature;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
-@Entity
+@Document (collection = "note")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreatureRumor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String accountantName;
     private CreatureHabitat habitat;
     private List<String> darkTales;
     private String immunitiesToCondition;
     private String resistenceDamage;
-    
+
 
 }

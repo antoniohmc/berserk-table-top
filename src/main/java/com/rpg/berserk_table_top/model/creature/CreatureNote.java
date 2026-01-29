@@ -1,16 +1,15 @@
 package com.rpg.berserk_table_top.model.creature;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
-@Entity
+@Document(collection = "creature")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,8 +17,7 @@ import java.util.List;
 public class CreatureNote {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String name;
     private String senses;
@@ -30,7 +28,5 @@ public class CreatureNote {
     private CreatureLanguage language;
     private CreatureRarity rarity;
     private CreatureRisk risk;
-
-
 
 }
