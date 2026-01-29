@@ -7,6 +7,9 @@ public class DiaryMapper {
     static Diary mapToEntity(DiaryRequest diary) {
         return Diary.builder()
                 .name(diary.getName())
+                .accountPlayerId(diary.getAccountPlayerId())
+                .creatureNotesId(diary.getCreatureNotesId())
+                .notesId(diary.getNotesId())
                 .build();
 
     }

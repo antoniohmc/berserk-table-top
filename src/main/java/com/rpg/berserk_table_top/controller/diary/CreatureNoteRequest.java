@@ -9,7 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,11 +16,11 @@ import java.util.List;
 @Builder
 public class CreatureNoteRequest {
 
+    private String diaryId;
     private String name;
     private String senses;
     private String behavior;
-    private List<String> observation;
-
+    private String observation;
     private CreatureType type;
     private CreatureLanguage language;
     private CreatureRarity rarity;

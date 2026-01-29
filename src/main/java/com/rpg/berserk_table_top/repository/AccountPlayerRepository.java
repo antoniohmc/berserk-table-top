@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AccountPlayerRepository extends MongoRepository<AccountPlayer,Long> {
+public interface AccountPlayerRepository extends MongoRepository<AccountPlayer,String> {
 
     Optional<AccountPlayer> findByNickname(String nickname);
 
-    Optional<AccountPlayer> findById(Long id);
+    Optional<AccountPlayer> findById(String id);
 }

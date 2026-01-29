@@ -18,11 +18,12 @@ public class CreatureNote {
 
     @Id
     private String id;
+    private String diaryId;
 
     private String name;
     private String senses;
     private String behavior;
-    private List<String> observation;
+    private String observation;
 
     private CreatureType type;
     private CreatureLanguage language;

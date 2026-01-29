@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "diary")
@@ -17,8 +18,10 @@ import java.util.List;
 public class Diary {
 
     @Id
-    private Long id;
-
+    private String id;
     private String name;
+    private String accountPlayerId;
+    private List<String> creatureNotesId = new ArrayList<>();
+    private List<String> notesId = new ArrayList<>();
 
 }

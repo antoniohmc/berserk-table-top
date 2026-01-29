@@ -1,5 +1,6 @@
 package com.rpg.berserk_table_top.service.accountPlayer;
 
+import com.rpg.berserk_table_top.exeptions.accountplayer.AccountIdNotFound;
 import com.rpg.berserk_table_top.exeptions.accountplayer.ExistingNicknameExeption;
 import com.rpg.berserk_table_top.exeptions.accountplayer.NotFoundAccount;
 import com.rpg.berserk_table_top.model.accountplayer.AccountPlayer;
@@ -20,9 +21,16 @@ public class AccountPlayerService {
         return accountRepository.save(account);
     }
 
-    public void deleteAccount(Long accountId) throws NotFoundAccount{
+    public void deleteAccount(String accountId) throws AccountIdNotFound {
         AccountPlayer accountPlayer = accountRepository.findById(accountId)
-                .orElseThrow(() -> new NotFoundAccount("ID não encontrado"));
+                .orElseThrow(() -> new AccountIdNotFound("ID não encontrado"));
+
+        accountRepository.deleteById(accountId);
+    }
+
+    public AccountPlayer findAccountByNickname(String nickname) throws NotFoundAccount {
+        return accountRepository.findByNickname(nickname)
+                .orElseThrow(() -> new NotFoundAccount("Nenhuma conta registrada com esse apelido."));
     }
 
     private void checkNicknameAlreadyExisting(AccountPlayer account) throws ExistingNicknameExeption {
@@ -31,6 +39,5 @@ public class AccountPlayerService {
         if (accountAlreadyExist.isPresent() && !accountAlreadyExist.get().getId().equals(account.getId())) {
             throw new ExistingNicknameExeption("Apelido de usuario ja esta em uso.");
         }
-
     }
 }

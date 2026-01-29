@@ -7,6 +7,7 @@ public class CreatureNoteMapper {
     static CreatureNoteResponse mapToResponse(CreatureNote creatureNote) {
         return CreatureNoteResponse.builder()
                 .id(creatureNote.getId())
+                .diaryId(creatureNote.getDiaryId())
                 .name(creatureNote.getName())
                 .senses(creatureNote.getSenses())
                 .behavior(creatureNote.getBehavior())
@@ -20,6 +21,7 @@ public class CreatureNoteMapper {
 
     static CreatureNote mapToEntity(CreatureNoteRequest creatureNote) {
         return CreatureNote.builder()
+                .diaryId(creatureNote.getDiaryId())
                 .name(creatureNote.getName())
                 .senses(creatureNote.getSenses())
                 .behavior(creatureNote.getBehavior())

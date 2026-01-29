@@ -15,7 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Note {
 
     @Id
-    private Long id;
+    private String id;
+    private String diaryId;
 
     private String text;
 }
