@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface PlayerAccountRepository {
-    Optional<PlayerAccount> findByNickname(String nickname);
+    Optional<PlayerAccount> findById(Long id);
 }

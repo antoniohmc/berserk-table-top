@@ -1,4 +1,4 @@
-package com.rpg.berserk_table_top.controller.creature;
+package com.rpg.berserk_table_top.controller.diary;
 
 import com.rpg.berserk_table_top.model.creature.CreatureLanguage;
 import com.rpg.berserk_table_top.model.creature.CreatureRarity;

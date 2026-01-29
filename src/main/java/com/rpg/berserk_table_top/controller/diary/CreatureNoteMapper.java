@@ -1,4 +1,4 @@
-package com.rpg.berserk_table_top.controller.creature;
+package com.rpg.berserk_table_top.controller.diary;
 
 import com.rpg.berserk_table_top.model.creature.CreatureNote;
 
@@ -18,7 +18,7 @@ public class CreatureNoteMapper {
                 .build();
     }
 
-    static CreatureNote mapToRequest(CreatureNoteRequest creatureNote) {
+    static CreatureNote mapToEntity(CreatureNoteRequest creatureNote) {
         return CreatureNote.builder()
                 .name(creatureNote.getName())
                 .senses(creatureNote.getSenses())
