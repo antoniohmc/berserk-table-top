@@ -2,6 +2,7 @@ package com.rpg.berserk_table_top.service.accountPlayer;
 
 import com.rpg.berserk_table_top.exeptions.accountplayer.AccountIdNotFound;
 import com.rpg.berserk_table_top.exeptions.accountplayer.ExistingNicknameExeption;
+import com.rpg.berserk_table_top.exeptions.accountplayer.IncorrectPasswordExeption;
 import com.rpg.berserk_table_top.exeptions.accountplayer.NotFoundAccount;
 import com.rpg.berserk_table_top.model.accountplayer.AccountPlayer;
 import com.rpg.berserk_table_top.repository.AccountPlayerRepository;
@@ -31,6 +32,25 @@ public class AccountPlayerService {
     public AccountPlayer findAccountByNickname(String nickname) throws NotFoundAccount {
         return accountRepository.findByNickname(nickname)
                 .orElseThrow(() -> new NotFoundAccount("Nenhuma conta registrada com esse apelido."));
+    }
+
+    public AccountPlayer updateAccount(String nickname, AccountPlayer accountPlayer) throws IncorrectPasswordExeption {
+        AccountPlayer existAccount = findAccountByNickname(nickname);
+
+        if (!accountPlayer.getPassword().equals(existAccount.getPassword())) {
+            throw new IncorrectPasswordExeption("Senha incorreta!");
+        }
+
+        if(!accountPlayer.getNickname().equals(existAccount.getNickname())) {
+            checkNicknameAlreadyExisting(accountPlayer);
+        }
+
+        AccountPlayer updatedAccount = AccountPlayer.builder()
+                .nickname(accountPlayer.getNickname())
+                .password(accountPlayer.getPassword())
+                .build();
+
+        return accountRepository.save(updatedAccount);
     }
 
     private void checkNicknameAlreadyExisting(AccountPlayer account) throws ExistingNicknameExeption {
