@@ -2,13 +2,14 @@ package com.rpg.berserk_table_top.service.accountPlayer;
 
 import com.rpg.berserk_table_top.exeptions.accountplayer.AccountIdNotFound;
 import com.rpg.berserk_table_top.exeptions.accountplayer.ExistingNicknameExeption;
-import com.rpg.berserk_table_top.exeptions.accountplayer.IncorrectPasswordExeption;
 import com.rpg.berserk_table_top.exeptions.accountplayer.NotFoundAccount;
 import com.rpg.berserk_table_top.model.accountplayer.AccountPlayer;
 import com.rpg.berserk_table_top.repository.AccountPlayerRepository;
+import com.rpg.berserk_table_top.service.diary.DiaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class AccountPlayerService {
 
     private final AccountPlayerRepository accountRepository;
+    private final DiaryService diaryService;
 
     public AccountPlayer resgisterAccount(AccountPlayer account) throws ExistingNicknameExeption {
         checkNicknameAlreadyExisting(account);
@@ -26,6 +28,9 @@ public class AccountPlayerService {
         AccountPlayer accountPlayer = accountRepository.findById(accountId)
                 .orElseThrow(() -> new AccountIdNotFound("ID não encontrado"));
 
+        String diaryId = accountPlayer.getDiaryId();
+
+        diaryService.deleteDiary(diaryId);
         accountRepository.deleteById(accountId);
     }
 
@@ -34,23 +39,8 @@ public class AccountPlayerService {
                 .orElseThrow(() -> new NotFoundAccount("Nenhuma conta registrada com esse apelido."));
     }
 
-    public AccountPlayer updateAccount(String nickname, AccountPlayer accountPlayer) throws IncorrectPasswordExeption {
-        AccountPlayer existAccount = findAccountByNickname(nickname);
-
-        if (!accountPlayer.getPassword().equals(existAccount.getPassword())) {
-            throw new IncorrectPasswordExeption("Senha incorreta!");
-        }
-
-        if(!accountPlayer.getNickname().equals(existAccount.getNickname())) {
-            checkNicknameAlreadyExisting(accountPlayer);
-        }
-
-        AccountPlayer updatedAccount = AccountPlayer.builder()
-                .nickname(accountPlayer.getNickname())
-                .password(accountPlayer.getPassword())
-                .build();
-
-        return accountRepository.save(updatedAccount);
+    public List<AccountPlayer> getAccounts() {
+        return accountRepository.findAll();
     }
 
     private void checkNicknameAlreadyExisting(AccountPlayer account) throws ExistingNicknameExeption {

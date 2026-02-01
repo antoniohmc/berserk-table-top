@@ -1,5 +1,6 @@
 package com.rpg.berserk_table_top.service.diary;
 
+import com.rpg.berserk_table_top.exeptions.creaturenote.CreatureNoteNotFound;
 import com.rpg.berserk_table_top.exeptions.diary.NotFoundDiary;
 import com.rpg.berserk_table_top.model.creature.CreatureNote;
 import com.rpg.berserk_table_top.model.diary.Diary;
@@ -15,7 +16,7 @@ public class CreatureNotesService {
     private final CreatureNoteRepository creatureNoteRepository;
     private final DiaryRepository diaryRepository;
 
-    public CreatureNote registerCreatureNote (String diaryId, CreatureNote creatureNote) {
+    public CreatureNote registerCreatureNote(String diaryId, CreatureNote creatureNote) {
         Diary diary = diaryRepository.findById(diaryId)
                 .orElseThrow(() -> new NotFoundDiary("Nenhum Diario registrado para adicionar notas!"));
 
@@ -37,5 +38,11 @@ public class CreatureNotesService {
         diaryRepository.save(diary);
 
         return creatureNote;
+    }
+
+    public void deleteCreatureNote(String creatureNoteId) throws CreatureNoteNotFound{
+        CreatureNote creatureNote = creatureNoteRepository.findById(creatureNoteId)
+                .orElseThrow(() -> new CreatureNoteNotFound("Nota nao encontrada"));
+        creatureNoteRepository.deleteById(creatureNoteId);
     }
 }
