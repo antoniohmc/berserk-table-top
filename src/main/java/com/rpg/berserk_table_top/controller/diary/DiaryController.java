@@ -1,6 +1,5 @@
 package com.rpg.berserk_table_top.controller.diary;
 
-import com.rpg.berserk_table_top.model.diary.Diary;
 import com.rpg.berserk_table_top.repository.DiaryRepository;
 import com.rpg.berserk_table_top.service.diary.DiaryService;
 import lombok.RequiredArgsConstructor;

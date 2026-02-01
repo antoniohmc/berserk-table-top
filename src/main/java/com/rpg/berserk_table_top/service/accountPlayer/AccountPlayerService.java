@@ -1,8 +1,8 @@
 package com.rpg.berserk_table_top.service.accountPlayer;
 
-import com.rpg.berserk_table_top.exeptions.accountplayer.AccountIdNotFound;
-import com.rpg.berserk_table_top.exeptions.accountplayer.ExistingNicknameExeption;
-import com.rpg.berserk_table_top.exeptions.accountplayer.NotFoundAccount;
+import com.rpg.berserk_table_top.exceptions.accountplayer.AccountIdNotFound;
+import com.rpg.berserk_table_top.exceptions.accountplayer.ExistingNicknameException;
+import com.rpg.berserk_table_top.exceptions.accountplayer.NotFoundAccount;
 import com.rpg.berserk_table_top.model.accountplayer.AccountPlayer;
 import com.rpg.berserk_table_top.repository.AccountPlayerRepository;
 import com.rpg.berserk_table_top.service.diary.DiaryService;
@@ -19,7 +19,7 @@ public class AccountPlayerService {
     private final AccountPlayerRepository accountRepository;
     private final DiaryService diaryService;
 
-    public AccountPlayer resgisterAccount(AccountPlayer account) throws ExistingNicknameExeption {
+    public AccountPlayer resgisterAccount(AccountPlayer account) throws ExistingNicknameException {
         checkNicknameAlreadyExisting(account);
         return accountRepository.save(account);
     }
@@ -43,11 +43,11 @@ public class AccountPlayerService {
         return accountRepository.findAll();
     }
 
-    private void checkNicknameAlreadyExisting(AccountPlayer account) throws ExistingNicknameExeption {
+    private void checkNicknameAlreadyExisting(AccountPlayer account) throws ExistingNicknameException {
         Optional<AccountPlayer> accountAlreadyExist = accountRepository.findByNickname(account.getNickname());
 
         if (accountAlreadyExist.isPresent() && !accountAlreadyExist.get().getId().equals(account.getId())) {
-            throw new ExistingNicknameExeption("Apelido de usuario ja esta em uso.");
+            throw new ExistingNicknameException("Apelido de usuario ja esta em uso.");
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.rpg.berserk_table_top.service.diary;
 
-import com.rpg.berserk_table_top.exeptions.accountplayer.AccountIdNotFound;
-import com.rpg.berserk_table_top.exeptions.diary.DiaryAlreadyExisting;
-import com.rpg.berserk_table_top.exeptions.diary.NotFoundDiary;
+import com.rpg.berserk_table_top.exceptions.accountplayer.AccountIdNotFound;
+import com.rpg.berserk_table_top.exceptions.diary.DiaryAlreadyExisting;
+import com.rpg.berserk_table_top.exceptions.diary.NotFoundDiary;
 import com.rpg.berserk_table_top.model.accountplayer.AccountPlayer;
 import com.rpg.berserk_table_top.model.diary.Diary;
 import com.rpg.berserk_table_top.repository.AccountPlayerRepository;

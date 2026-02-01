@@ -1,7 +1,7 @@
 package com.rpg.berserk_table_top.service.diary;
 
-import com.rpg.berserk_table_top.exeptions.creaturenote.CreatureNoteNotFound;
-import com.rpg.berserk_table_top.exeptions.diary.NotFoundDiary;
+import com.rpg.berserk_table_top.exceptions.creaturenote.CreatureNoteNotFound;
+import com.rpg.berserk_table_top.exceptions.diary.NotFoundDiary;
 import com.rpg.berserk_table_top.model.creature.CreatureNote;
 import com.rpg.berserk_table_top.model.diary.Diary;
 import com.rpg.berserk_table_top.repository.CreatureNoteRepository;
